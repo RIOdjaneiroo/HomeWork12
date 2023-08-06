@@ -24,7 +24,7 @@ public class NumberProcessor extends Thread{
 
     @Override
     public void run() {
-        while (!sStop.get()){  //безкінечний цикл
+        while (!sStop.get()){  // безкінечний цикл
             try {
                 sleep(100);                         // короткий сон, працює і без нього але зі сном приємні
             } catch (InterruptedException e) {

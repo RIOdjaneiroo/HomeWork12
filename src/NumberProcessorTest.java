@@ -55,6 +55,9 @@ private int num;                   // змінна лічильника
                 }
             }
         }
+        for (NumberProcessor t: threds){
+            t.stopProcessing();
+        }
     }
 }
 
