@@ -2,7 +2,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NumberProcessorTest {
-    public static void main(String[] args) {
+private int num;                   // змінна лічильника
+
+    public NumberProcessorTest(int num) {  // конструктор
+        this.num = num;                   // приймаэмо число
+        processNumbers(num);              // викликаэмо метод
+    }
+    public static void processNumbers(int num) {  //  метод по переробкі чисел
         NumberProcessor npFizz = new NumberProcessor((n)->{ // створюємо наш клас по суті процес що перевіряє умову задачі
             if (n%3==0&& n%5!=0){                           // якщо умова виконується
                 System.out.println("fizz");       //друкується рядок
@@ -33,7 +39,7 @@ public class NumberProcessorTest {
         for(NumberProcessor t: threds){              // запускаємо масив потоків що створили вище
             t.start();
         }
-        for(int i  = 1; i<=100; i++){        // цей цикл це посуті лічильник що відпрацьовує від 1 до 100
+        for(int i  = 1; i<=num; i++){        // цей цикл це посуті лічильник що відпрацьовує від 1 до 100
             for(NumberProcessor t: threds){  // перша ітерація це роздача числа лічильника процесам
                 t.process(i);                // процесам потоків що в масиві, передаємо і
             }

@@ -5,6 +5,10 @@ public class NumberProcessor extends Thread{
     private Consumer<Integer> procesor;   // створюємо змінну типу Consumer функція що приймає інт
     private  int n;                     // створюємо змінну число яке будемо приймати в процес
     private AtomicBoolean isNProcesed = new AtomicBoolean(true); //ствЗм що вказуэ чи обробив процес число  n
+    private AtomicBoolean sStop = new AtomicBoolean(false);      // змінна для зупинки потоків
+    public void stopProcessing() {                        // метод для зміни змінної зупинки потоків
+        sStop.set(true);
+    }
     public NumberProcessor(Consumer<Integer> procesor){  // конструктор класу що приймаэ типу функцыю
         this.procesor = procesor;
     }
@@ -20,7 +24,7 @@ public class NumberProcessor extends Thread{
 
     @Override
     public void run() {
-        while (true){  //безкінечний цикл
+        while (!sStop.get()){  //безкінечний цикл
             try {
                 sleep(100);                         // короткий сон, працює і без нього але зі сном приємні
             } catch (InterruptedException e) {
